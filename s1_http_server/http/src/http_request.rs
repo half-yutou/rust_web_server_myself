@@ -1,5 +1,3 @@
-use crate::http_request::Method::{Get, Post, Uninitialized};
-use crate::http_request::Version::V1_1;
 use std::collections::HashMap;
 
 #[derive(Debug, PartialEq)]
@@ -12,9 +10,9 @@ pub enum Method {
 impl From<&str> for Method {
     fn from(s: &str) -> Self {
         match s {
-            "GET" => Get,
-            "POST" => Post,
-            _ => Uninitialized
+            "GET" => Method::Get,
+            "POST" => Method::Post,
+            _ => Method::Uninitialized
         }
     }
 }
@@ -22,9 +20,9 @@ impl From<&str> for Method {
 impl From<i32> for Method {
     fn from(value: i32) -> Self {
         match value {
-            1 => Get,
-            2 => Post,
-            _ => Uninitialized
+            1 => Method::Get,
+            2 => Method::Post,
+            _ => Method::Uninitialized
         }
     }
 }
@@ -39,7 +37,7 @@ pub enum Version {
 impl From<&str> for Version {
     fn from(s: &str) -> Self {
         match s {
-            "HTTP/1.1" => V1_1,
+            "HTTP/1.1" => Version::V1_1,
             _ => Version::Uninitialized
         }
     }
